@@ -44,15 +44,19 @@ public class account{
         balance+= amount;
     }
 
-    public void withdraw(double amount)throws WithdrawException{
+    public void withdraw(double amount){
 
+        validateWithdraw(amount);
+        balance-= amount;
+    }
+
+    private void validateWithdraw(double amount)throws WithdrawException{
         if(balance <= 0){
             throw new WithdrawException("Seu saldo é menor que o saque!");
         }
         if(amount > withdrawLimit){
             throw new WithdrawException("Saque maior que o limite estipulado!");
         }
-        balance-= amount;
     }
     
     @Override
